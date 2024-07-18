@@ -1,3 +1,8 @@
+### relative project:
+
+[Frontend](https://github.com/shawerestart/coin-assets-demo)
+
+[Backend](https://github.com/shawerestart/coin-assets-demo-backend)
 
 ## Installation
 
@@ -34,16 +39,26 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
+### Using Technologies
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+1. typeORM
 
-## Stay in touch
+2. axios
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+3. winston logger
 
-## License
+4. redis cache
 
-Nest is [MIT licensed](LICENSE).
+5. mysql
+
+6. httpModule
+
+### Supported Features
+
+✅ Using Node.js With Nest.js Framework
+
+✅ (Optional) Dockerizing the whole application, (no test)
+
+### relative project:
+
+[Frontend](https://github.com/shawerestart/coin-assets-demo)
