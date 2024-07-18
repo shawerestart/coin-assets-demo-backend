@@ -1,0 +1,46 @@
+version: '3'
+volumes:
+  coinmarket_mysql_data:
+  coinmarket_redis_data:
+networks:
+  coinmarket-network:
+    driver: bridge
+services:
+  mysql:
+    container_name: coinmarket-mysql
+    # platform: linux/amd64
+    image: mysql:5.7
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --group_concat_max_len=10240000
+    restart: on-failure
+    volumes:
+      - coinmarket_mysql_data:/var/lib/mysql
+    ports:
+      - ${NEST_MYSQL_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NEST_MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${NEST_MYSQL_DATABASE}
+      MYSQL_USER: ${NEST_MYSQL_USER}
+      MYSQL_PASSWORD: ${NEST_MYSQL_PASSWORD}
+      TZ: Asia/Shanghai
+    networks:
+      coinmarket-network:
+        aliases:
+          - mysql.coinmarket
+  redis:
+    # platform: linux/amd64
+    container_name: coinmarket-redis
+    restart: on-failure
+    volumes:
+      - ./docker/redis.conf:/usr/local/etc/redis/redis.conf:rw
+      - coinmarket_redis_data:/data:rw
+    image: redis:5.0.8
+    command:
+      /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf"
+    ports:
+      - "6379:6379"
+    environment:
+      TZ: Asia/Shanghai
+    networks:
+      coinmarket-network:
+        aliases:
+          - redis.coinmarket
